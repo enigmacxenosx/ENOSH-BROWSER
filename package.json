@@ -1,11 +1,55 @@
 {
-  "name": "my-project",
+  "name": "enosx-browser",
   "version": "0.1.0",
+  "description": "A private, focused, offline-ready browser shell with Enosx AI.",
   "private": true,
+  "author": {
+    "name": "Enosx Technologies",
+    "email": "hello@enosx.tech"
+  },
+  "main": "electron/main.cjs",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "build:web": "next build",
+    "electron:dev": "concurrently -k \"next dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron:build": "pnpm build:web && electron-builder",
+    "installer:linux": "pnpm build:web && electron-builder --linux AppImage deb",
+    "installer:windows": "pnpm build:web && electron-builder --win nsis",
+    "installer:mac": "pnpm build:web && electron-builder --mac dmg"
+  },
+  "build": {
+    "appId": "com.enosx.browser",
+    "productName": "Enosx Browser",
+    "artifactName": "Enosx-Browser-${version}-${os}-${arch}.${ext}",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Network",
+      "maintainer": "Enosx Technologies <hello@enosx.tech>"
+    },
+    "win": {
+      "target": ["nsis"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "mac": {
+      "target": ["dmg"],
+      "category": "public.app-category.productivity"
+    }
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
@@ -28,6 +72,10 @@
     "@types/react-dom": "^19",
     "postcss": "^8.5",
     "tailwindcss": "^4.3.3",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "concurrently": "^9.1.2",
+    "electron": "^36.3.2",
+    "electron-builder": "^26.0.12",
+    "wait-on": "^8.0.3"
   }
 }

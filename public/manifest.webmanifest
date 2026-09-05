@@ -1,0 +1,27 @@
+{
+  "name": "Enosx Browser",
+  "short_name": "Enosx",
+  "description": "A private, focused, offline-ready browser shell with Enosx AI.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "background_color": "#10131d",
+  "theme_color": "#10131d",
+  "orientation": "any",
+  "categories": ["productivity", "utilities", "internet"],
+  "icons": [
+    {
+      "src": "/icon-light-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

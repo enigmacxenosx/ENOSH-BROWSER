@@ -3,9 +3,11 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Enosh — A quieter web',
-  description: 'A private, focused browser for the modern web.',
-  generator: 'Enosh',
+  title: 'Enosx Browser — Private by design',
+  description: 'A private, focused, offline-ready browser shell with Enosx AI.',
+  generator: 'Enosx Technologies',
+  applicationName: 'Enosx Browser',
+  manifest: '/manifest.webmanifest',
   icons: {
     icon: [
       {
@@ -28,6 +30,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   colorScheme: 'dark',
   themeColor: '#10131d',
+  viewportFit: 'cover',
 }
 
 export default function RootLayout({
